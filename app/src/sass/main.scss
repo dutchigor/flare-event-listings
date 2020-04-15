@@ -1,0 +1,105 @@
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin faSize( $size ) {
+    height: $size;
+    width: $size;
+    // line-height: $size;
+    padding: $size / 4;
+    font-size: $size / 2;
+}
+
+.fg-listings-app {
+    .bg-circle {
+        border-radius: 50%;
+        flex-shrink: 0;
+        text-align: center;
+        vertical-align: middle;
+
+        &.d-40 {
+            @include faSize( 40px );
+        }
+        &.d-30 {
+            @include faSize( 30px );
+        }
+
+    }
+
+    .toggle-col {
+        position: relative;
+    }
+    
+    .toggleable {
+        position: fixed;
+        right: 0;
+        top: 0; 
+        bottom: 0;
+        transition: max-width 0.5s;
+        z-index: 10;
+        &.slide-in {
+            max-width: 0;
+
+            .toggle-chevron {
+                transform: rotateY( 180deg );
+                transition: transform 0.5s;
+            }
+        }
+
+        &.slide-in, &.slide-out {
+            .side-menu {
+                overflow: hidden;
+                > * {
+                    min-width: 100vw;
+                }
+            }
+        }
+
+        .toggle-btn {
+            transform: rotateZ(90deg);
+            transform-origin: bottom left;
+        }
+    }
+    
+    .fg-menu-toggle {
+        position: sticky;
+        float: left;
+        top: 40%;
+        margin-left: -2.9em;
+        width: 2em;
+        height: 2em;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .box-right {
+        &.custom-control {
+            padding-left: initial;
+            padding-right: 1.5rem;
+        }
+        .custom-control-label {
+            &::before, &::after {
+                left: initial;
+                right: -1.5rem;
+            }
+        }
+    }
+
+    .list-group-item:last-child {
+        border-bottom: 1px;
+    }
+
+    @media only screen and ( min-width: $breakpoint-sm ) {
+        .toggleable {
+            position: relative;
+        }
+
+        .fg-menu-toggle {
+            top: 30px;
+            margin-left: -2em;
+            padding: 5px;
+        }
+    }
+}

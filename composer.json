@@ -1,0 +1,28 @@
+{
+    "name": "igorh/fg-event-listings",
+    "description": "Event listings plugin",
+    "type": "wordpress-plugin",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../CMB2-image-map",
+            "options": {
+                "symlink": false
+            }
+        }
+    ],
+    "require": {
+        "cmb2/cmb2": "v2.7.0",
+        "jcchavezs/cmb2-conditionals": "dev-master",
+        "dutchigor/cmb2-rest-query": "dev-master",
+        "dutchigor/cmb2-image-map": "dev-master"
+    },
+    "license": "GPL-3",
+    "authors": [
+        {
+            "name": "igor",
+            "email": "igor@flarehub.io"
+        }
+    ],
+    "minimum-stability": "dev"
+}
