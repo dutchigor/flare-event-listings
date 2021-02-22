@@ -7,7 +7,7 @@
                 :key="listing.id"
             >
                 <div class="card">
-                    <img class="card-img-top"
+                    <img v-if="listing._embedded['wp:featuredmedia']" class="card-img-top"
                         :src="listing._embedded['wp:featuredmedia'][0].source_url"
                         :alt="listing._embedded['wp:featuredmedia'][0].alt_text" />
                     <div class="card-body p-3 text-center">

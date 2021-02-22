@@ -2,7 +2,8 @@
     <div>
         <div class="row">
             <div class="col-12 col-lg-6">
-                <img class="card-img-top"
+                <img v-if="listing._embedded['wp:featuredmedia']"
+                    class="card-img-top"
                     :src="listing._embedded['wp:featuredmedia'][0].source_url"
                     :alt="listing._embedded['wp:featuredmedia'][0].alt_text" />
             </div>
