@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  # MySQL database
+  db:
+    image: mysql:latest
+    restart: always
+    ports: 
+      - ${MYSQL_PORT}:3306
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
+    volumes:
+      - db:/var/lib/mysql
+      - ./wp-data:/docker-entrypoint-initdb.d
+
+  # WordPress core installation
+  wordpress:
+    image: wordpress/local
+    build: 
+      context: docker
+      dockerfile: wordpress.Dockerfile
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - ${WORDPRESS_PORT}:80
+    env_file: 
+      - .env
+    environment:
+      WORDPRESS_DB_HOST: db
+      WAIT_HOSTS: db:3306
+    volumes:
+      - wordpress:/var/www/html
+      - ./${PROJECT_TYPE}:/var/www/html/wp-content/plugins/${PROJECT_NAME}
+      - ./docker/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+
+volumes:
+  wordpress:
+  db:

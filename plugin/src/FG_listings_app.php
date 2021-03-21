@@ -90,7 +90,8 @@ class FG_listings_app
             $app_url = plugin_dir_url( $app_dir );
         } else {
             $site_url = parse_url( get_site_url() );
-            $app_url = $site_url['scheme'] . '://' . $site_url['host'] . ':8080/';
+            $node_port = getenv( 'NODE_PORT' );
+            $app_url = "{$site_url['scheme']}://{$site_url['host']}:{$node_port}/";
         }
 
         // register the Vue vendors script.
